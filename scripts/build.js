@@ -66,8 +66,10 @@ async function build() {
   const blogList = blogFiles
     .filter(file => file.endsWith('.md'))
     .map(file => {
+      const content = fs.readFileSync(`src/content/blog/${file}`, 'utf-8');
+      const title = extractTitle(content);
       const name = file.replace('.md', '');
-      return `<li><a href="/blog/${name}.html">${name}</a></li>`;
+      return `<li><a href="/blog/${name}.html">${title}</a></li>`;
     })
     .join('\n');
     
@@ -75,7 +77,7 @@ async function build() {
     .replace('{{title}}', 'Blog')
     .replace('{{content}}', `
       <h1>Blog Posts</h1>
-      <ul>
+      <ul class="blog-list">
         ${blogList}
       </ul>
     `);
