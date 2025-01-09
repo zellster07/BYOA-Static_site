@@ -19,7 +19,7 @@ async function build() {
   // Ensure output directory exists
   await fs.ensureDir('dist');
   
-  // Copy static assets
+  // Copy static assets (including index.html)
   await fs.copy('src/static', 'dist');
   
   // Build blog posts
@@ -42,10 +42,10 @@ async function build() {
     }
   }
   
-  // Build pages
+  // Build pages (excluding index since we're handling it separately)
   const pageFiles = await fs.readdir('src/content/pages');
   for (const file of pageFiles) {
-    if (file.endsWith('.md')) {
+    if (file.endsWith('.md') && file !== 'index.md') {
       const content = await fs.readFile(`src/content/pages/${file}`, 'utf-8');
       const title = extractTitle(content);
       const html = marked(content);
