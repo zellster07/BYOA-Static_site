@@ -1,0 +1,21 @@
+{
+  "name": "static-site",
+  "version": "1.0.0",
+  "description": "1. make a simple landing page \r 2. make a template for a blog post\r 3. makea Markdown to HTML converter\r 4. Simple integration for convertkit\r 5. Add a simple contact form",
+  "main": "index.js",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "serve": "serve -p 3000 dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fs-extra": "^11.2.0",
+    "marked": "^15.0.6"
+  },
+  "devDependencies": {
+    "serve": "14.2.1"
+  }
+}
